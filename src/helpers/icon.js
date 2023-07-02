@@ -1,0 +1,12 @@
+export const activeUsers = require("../assets/icon/activeUser.png");
+export const assets = require("../assets/icon/assets.png");
+export const close = require("../assets/icon/close.png");
+export const leftArrow = require("../assets/icon/leftArrow.png");
+export const rightArrow = require("../assets/icon/rightArrow.png");
+export const dashboard = require("../assets/icon/dashboard.png");
+export const logo = require("../assets/icon/logo.png");
+export const menu = require("../assets/icon/menu.png");
+export const users = require("../assets/icon/user.png");
+export const viewGreen = require("../assets/icon/greenView.png");
+export const viewPink = require("../assets/icon/pinkView.png");
+export const viewViolet = require("../assets/icon/violetView.png");
