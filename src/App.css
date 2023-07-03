@@ -8,9 +8,10 @@
 }
 .slick-slider{
   width: 100%;
+  margin-left: 100px;
 }
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 10px;
 }
 
 /* Track */
@@ -27,7 +28,7 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #f24e1e50; 
+  background: #f24e1e70; 
 }
 .MuiPaper-root{
   overflow: hidden;

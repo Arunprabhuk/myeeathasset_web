@@ -2,7 +2,13 @@ import React from "react";
 import { Box, Grid, IconButton } from "@mui/material";
 import OutlinedCard from "./common/Card/Card";
 import { cardItems } from "../data/ComponentData";
-import { leftArrow, rightArrow } from "../helpers/icon";
+import {
+  activeUsers,
+  assets,
+  leftArrow,
+  rightArrow,
+  users,
+} from "../helpers/icon";
 import Slider from "react-slick";
 import FullScreenDialog from "./common/Dialoge";
 import UserCard from "./common/Card/UserCard";
@@ -141,6 +147,7 @@ const ListComponent = () => {
           handleClose={onCloseUserDetails}
           title="USER DETAILS"
           children={<UserCard userDetails={allUserDetails} />}
+          icon={users}
         />
       )}
       {isUserActive && (
@@ -148,7 +155,9 @@ const ListComponent = () => {
           open={isUserActive}
           handleClose={onCloseUserDetails}
           title="ACTIVE USERS"
-          children={<UserCard userDetails={filterActiveUser} />}
+          children={<UserCard userDetails={filterActiveUser} isActive />}
+          icon={activeUsers}
+          isActive
         />
       )}
       {isAssests && (
@@ -157,6 +166,7 @@ const ListComponent = () => {
           handleClose={onCloseUserDetails}
           title="USER ASSETS"
           children={<UserCard showAssetDetails userDetails={allUserDetails} />}
+          icon={assets}
         />
       )}
     </>

@@ -16,7 +16,7 @@ const UserTableHeader = ({ showAssetDetails }) => {
           width: "100%",
           height: "100%",
           padding: 5,
-          boxShadow: "0px 4px 4px 0px rgba(136, 238, 152, 0.25)",
+          boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -45,7 +45,9 @@ const UserTableHeader = ({ showAssetDetails }) => {
             justifyContent: "center",
           }}
         >
-          <Typography>Role</Typography>
+          <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+            Role
+          </Typography>
         </Grid>
         <Grid
           sx={{
@@ -55,7 +57,9 @@ const UserTableHeader = ({ showAssetDetails }) => {
             justifyContent: "center",
           }}
         >
-          <Typography>Email</Typography>
+          <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+            Email
+          </Typography>
         </Grid>
         {!showAssetDetails && (
           <>
@@ -67,7 +71,9 @@ const UserTableHeader = ({ showAssetDetails }) => {
                 justifyContent: "center",
               }}
             >
-              <Typography>Created At</Typography>
+              <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                Created At
+              </Typography>
             </Grid>
 
             <Grid
@@ -78,7 +84,9 @@ const UserTableHeader = ({ showAssetDetails }) => {
                 justifyContent: "center",
               }}
             >
-              <Typography>Mobile Number</Typography>
+              <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                Mobile Number
+              </Typography>
             </Grid>
           </>
         )}
@@ -91,7 +99,14 @@ const UserTableHeader = ({ showAssetDetails }) => {
               justifyContent: "center",
             }}
           >
-            <Typography sx={{ cursor: "pointer", marginLeft: 5 }}>
+            <Typography
+              sx={{
+                fontSize: 16,
+                fontWeight: "bold",
+                cursor: "pointer",
+                marginLeft: 5,
+              }}
+            >
               No Of Assets
             </Typography>
           </Grid>

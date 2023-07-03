@@ -1,4 +1,11 @@
-import { Avatar, Grid, IconButton, Paper, Typography } from "@mui/material";
+import {
+  Avatar,
+  Grid,
+  IconButton,
+  Paper,
+  Popover,
+  Typography,
+} from "@mui/material";
 import moment from "moment";
 import React from "react";
 import { useService } from "../../../helpers/useService";
@@ -6,12 +13,14 @@ import { viewGreen } from "../../../helpers/icon";
 import { useDispatch } from "react-redux";
 import { ENABLE_IMAGE_SLIDER } from "../../../redux/actionType";
 
-const UserList = ({ item, id, showAssetDetails }) => {
+const UserList = ({ item, id, showAssetDetails, isActive }) => {
   const dispatch = useDispatch();
   console.log(`${useService()}/${item?.profilePicture.split("\\").pop()}`);
   const flexWidth = showAssetDetails ? 0.25 : 0.2;
   // const getImage = (process.env.REACT_APP_MODE = "production" ? "/" : "\\");
-  const onHandleOpen = (id) => {
+  console.log(item);
+  const onHandleOpen = (e, id) => {
+    e.preventDefault();
     dispatch({ type: ENABLE_IMAGE_SLIDER, payload: id });
   };
   return (
@@ -29,11 +38,12 @@ const UserList = ({ item, id, showAssetDetails }) => {
             width: "100%",
             height: "100%",
             padding: 5,
-            boxShadow: "0px 4px 4px 0px rgba(136, 238, 152, 0.25)",
+            boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             borderRadius: 10,
+            position: "relative",
           }}
         >
           <Grid
@@ -49,9 +59,7 @@ const UserList = ({ item, id, showAssetDetails }) => {
               src={`${useService()}/${item?.profilePicture.split("/").pop()}`}
             />
             <Grid sx={{ marginLeft: 3 }}>
-              <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
-                {item.fullname}
-              </Typography>
+              <Typography sx={{ fontSize: 16 }}>{item.fullname}</Typography>
             </Grid>
           </Grid>
           <Grid
@@ -99,6 +107,19 @@ const UserList = ({ item, id, showAssetDetails }) => {
               >
                 <Typography>{item.contactNumber}</Typography>
               </Grid>
+              {isActive && (
+                <Grid
+                  sx={{
+                    position: "absolute",
+                    width: 20,
+                    height: 20,
+                    right: 25,
+                    top: 30,
+                    borderRadius: 20,
+                    backgroundColor: "green",
+                  }}
+                />
+              )}
             </>
           )}
           {showAssetDetails && (
@@ -113,7 +134,7 @@ const UserList = ({ item, id, showAssetDetails }) => {
               <Typography sx={{ cursor: "pointer", marginLeft: 5 }}>
                 {item.noOfAssets}
               </Typography>
-              <IconButton onClick={() => onHandleOpen(item.id)}>
+              <IconButton onClick={(e) => onHandleOpen(e, item.id)}>
                 {item.noOfAssets !== 0 && <img src={viewGreen} />}
               </IconButton>
             </Grid>

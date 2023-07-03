@@ -23,6 +23,7 @@ export default function FullScreenDialog({
   handleClose,
   children,
   title,
+  icon,
 }) {
   return (
     <div>
@@ -33,24 +34,48 @@ export default function FullScreenDialog({
         TransitionComponent={Transition}
       >
         <AppBar sx={{ position: "relative" }}>
-          <Toolbar sx={{ backgroundColor: "white" }}>
+          <Toolbar
+            sx={{
+              backgroundColor: "white",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <IconButton
+                edge="start"
+                color="inherit"
+                onClick={handleClose}
+                aria-label="close"
+              >
+                <img src={icon} style={{ width: 35, height: 35 }} />
+              </IconButton>
+              <Typography
+                edge="start"
+                color="inherit"
+                onClick={handleClose}
+                aria-label="close"
+                style={{ color: "#00000070", fontWeight: "600" }}
+              >
+                {title}
+              </Typography>
+            </div>
+
             <IconButton
               edge="start"
               color="inherit"
               onClick={handleClose}
               aria-label="close"
+              sx={{ display: "flex", alignItems: "center" }}
             >
               <img src={close} style={{ width: 35, height: 35 }} />
             </IconButton>
-            <Typography
-              edge="start"
-              color="inherit"
-              onClick={handleClose}
-              aria-label="close"
-              style={{ color: "#00000050", fontWeight: "600" }}
-            >
-              {title}
-            </Typography>
           </Toolbar>
         </AppBar>
         {children}

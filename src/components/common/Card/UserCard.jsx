@@ -10,7 +10,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { close } from "../../../helpers/icon";
 import { width } from "@mui/system";
-const UserCard = ({ userDetails, showAssetDetails = false }) => {
+const UserCard = ({
+  userDetails,
+  showAssetDetails = false,
+  isActive = false,
+}) => {
   const { enableSlider, id, allUserAssetsDetails } = useSelector(
     (state) => state.user
   );
@@ -63,6 +67,7 @@ const UserCard = ({ userDetails, showAssetDetails = false }) => {
                   showAssetDetails={showAssetDetails}
                   item={item}
                   id={index}
+                  isActive={isActive}
                 />
               );
             })
