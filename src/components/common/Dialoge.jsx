@@ -12,12 +12,18 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import { close } from "../../helpers/icon";
+import { Title } from "@mui/icons-material";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog({ open, handleClose, children }) {
+export default function FullScreenDialog({
+  open,
+  handleClose,
+  children,
+  title,
+}) {
   return (
     <div>
       <Dialog
@@ -36,6 +42,14 @@ export default function FullScreenDialog({ open, handleClose, children }) {
             >
               <img src={close} style={{ width: 35, height: 35 }} />
             </IconButton>
+            <Typography
+              edge="start"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="close"
+            >
+              {title}
+            </Typography>
           </Toolbar>
         </AppBar>
         {children}

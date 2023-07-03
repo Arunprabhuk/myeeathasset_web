@@ -87,6 +87,7 @@ const UserCard = ({ userDetails, showAssetDetails = false }) => {
             style={{
               height: "100%",
               borderRadius: "10px",
+              overflow: "hidden",
             }}
           >
             <IconButton

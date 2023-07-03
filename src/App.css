@@ -29,6 +29,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #b30000; 
 }
+.MuiPaper-root{
+  overflow: hidden;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
