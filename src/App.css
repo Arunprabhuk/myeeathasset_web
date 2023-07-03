@@ -21,13 +21,13 @@
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: red; 
+  background: #f24e1e; 
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
+  background: #f24e1e50; 
 }
 .MuiPaper-root{
   overflow: hidden;

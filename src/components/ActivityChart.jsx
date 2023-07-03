@@ -16,7 +16,7 @@ const ActivityChart = () => {
     allUserDetails.map((item) => {
       return item.noOfAssets;
     });
-
+  console.log("data", data);
   const options = {
     chart: {
       type: "bar",
@@ -87,7 +87,11 @@ const ActivityChart = () => {
         paddingBlock: 5,
       }}
     >
-      <HighchartsReact options={options} highcharts={Highcharts} />
+      {!data ? (
+        <p>No data available</p>
+      ) : (
+        <HighchartsReact options={options} highcharts={Highcharts} />
+      )}
     </Grid>
   );
 };

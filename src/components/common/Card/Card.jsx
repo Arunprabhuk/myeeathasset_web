@@ -34,7 +34,13 @@ export default function OutlinedCard({
   const card = (
     <React.Fragment>
       <CardContent>
-        <Grid>
+        <Grid
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <img src={image} alt={title} />
           <Typography>{title}</Typography>
         </Grid>

@@ -47,6 +47,7 @@ export default function FullScreenDialog({
               color="inherit"
               onClick={handleClose}
               aria-label="close"
+              style={{ color: "#00000050", fontWeight: "600" }}
             >
               {title}
             </Typography>

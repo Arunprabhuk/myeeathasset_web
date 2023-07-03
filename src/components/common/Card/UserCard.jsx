@@ -9,6 +9,7 @@ import { useService } from "../../../helpers/useService";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { close } from "../../../helpers/icon";
+import { width } from "@mui/system";
 const UserCard = ({ userDetails, showAssetDetails = false }) => {
   const { enableSlider, id, allUserAssetsDetails } = useSelector(
     (state) => state.user
@@ -70,45 +71,6 @@ const UserCard = ({ userDetails, showAssetDetails = false }) => {
           )}
         </Grid>
       </Grid>
-      {enableSlider && (
-        <Dialog
-          fullScreen
-          open={enableSlider}
-          style={{
-            marginTop: 140,
-            height: 600,
-            width: "19%",
-            marginInline: "auto",
-            borderRadius: "10px",
-          }}
-          onClose={() => dispatch({ type: DISABLE_IMAGE_SLIDER })}
-        >
-          <Paper
-            style={{
-              height: "100%",
-              borderRadius: "10px",
-              overflow: "hidden",
-            }}
-          >
-            <IconButton
-              onClick={() => dispatch({ type: DISABLE_IMAGE_SLIDER })}
-            >
-              <img style={{ width: 25, height: 25 }} src={close} />
-            </IconButton>
-
-            <Slider>
-              {filterImageNameById.length > 0 &&
-                filterImageNameById.map((item) => {
-                  return (
-                    <div>
-                      <img src={`${url}/${item.split("/").pop()}`} />
-                    </div>
-                  );
-                })}
-            </Slider>
-          </Paper>
-        </Dialog>
-      )}
     </>
   );
 };
