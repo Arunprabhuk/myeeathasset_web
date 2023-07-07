@@ -121,6 +121,7 @@ export const registerAdminUser = (data) => {
           pauseOnHover: false,
           autoClose: 2000,
         });
+        dispatch(sendAdminUser());
       }
       if (result.statuscode === 401) {
         toast.error(result.error, {
@@ -128,6 +129,7 @@ export const registerAdminUser = (data) => {
           pauseOnHover: false,
           autoClose: 2000,
         });
+        dispatch(sendAdminUser());
       }
     } catch (error) {
       console.log(error);
