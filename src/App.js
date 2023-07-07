@@ -21,9 +21,9 @@ function App() {
       <div className="App">
         <Router>
           <Routes>
-            <Route element={<MainContainer />} path="/admin/dashboard" />
+            <Route element={<MainContainer />} path="/dashboard" />
             <Route element={<LoginPage />} path="/" />
-            <Route element={<SignUpPage />} path="/admin/signup" />
+            <Route element={<SignUpPage />} path="/signup" />
             <Route
               element={
                 <Grid
