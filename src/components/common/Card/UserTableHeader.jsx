@@ -46,7 +46,7 @@ const UserTableHeader = ({ showAssetDetails }) => {
           }}
         >
           <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
-            Role
+            Type
           </Typography>
         </Grid>
         <Grid
@@ -72,7 +72,7 @@ const UserTableHeader = ({ showAssetDetails }) => {
               }}
             >
               <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
-                Created At
+                Valid At
               </Typography>
             </Grid>
 

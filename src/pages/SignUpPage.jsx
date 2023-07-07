@@ -16,6 +16,10 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerAdminUser } from "../redux/action/userAction";
+import { ThreeDots } from "react-loader-spinner";
+import "react-toastify/dist/ReactToastify.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 const initialState = () => {
   return {
     fullname: "",
@@ -105,6 +109,7 @@ const SignUpPage = () => {
             isemailError: true,
           },
         }));
+        return;
       }
     }
     if (password === "") {
@@ -133,7 +138,8 @@ const SignUpPage = () => {
       dispatch(registerAdminUser(data));
     }
   };
-  console.log(isLoading);
+
+  console.log("isLoading", isLoading);
   return (
     <Grid
       sx={{
@@ -144,6 +150,7 @@ const SignUpPage = () => {
         justifyContent: "center",
       }}
     >
+      <ToastContainer />
       <Box sx={{ width: 400, height: 500 }}>
         <Card
           sx={{
@@ -337,7 +344,20 @@ const SignUpPage = () => {
             }}
             onClick={onHandleSubmit}
           >
-            Sign Up
+            {isLoading ? (
+              <ThreeDots
+                height="30"
+                width="30"
+                radius="9"
+                color="#F24E1E"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{}}
+                wrapperClassName=""
+                visible={true}
+              />
+            ) : (
+              "Login"
+            )}
           </Button>
           <Grid
             sx={{

@@ -14,6 +14,10 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAdminUser } from "../redux/action/userAction";
+import { RevolvingDot, TailSpin, ThreeDots } from "react-loader-spinner";
+import "react-toastify/dist/ReactToastify.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const initialState = () => {
   return {
@@ -32,7 +36,7 @@ const LoginPage = () => {
   const [hidePassword, setHidePassword] = React.useState(true);
   const { email, password, error } = state;
   const { emailErr, isemailError, ispasswordError, passwordErr } = error;
-  const { isLoggedin } = useSelector((state) => state.user);
+  const { isLoggedin, isLoginLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   console.log(isLoggedin);
   const navigate = useNavigate();
@@ -104,9 +108,11 @@ const LoginPage = () => {
     }
   };
   React.useEffect(() => {
-    if (isLoggedin || localStorage.getItem("isLoggedIn")) {
-      navigate("/dashboard", { replace: true });
-    }
+    setTimeout(() => {
+      if (isLoggedin || localStorage.getItem("isLoggedIn")) {
+        navigate("/dashboard", { replace: true });
+      }
+    }, 3000);
   }, [isLoggedin]);
   return (
     <Grid
@@ -118,6 +124,8 @@ const LoginPage = () => {
         justifyContent: "center",
       }}
     >
+      <ToastContainer />
+
       <Box sx={{ width: 400, height: 400 }}>
         <Card
           sx={{
@@ -214,6 +222,7 @@ const LoginPage = () => {
               ),
             }}
           />
+
           <Button
             sx={{
               marginBlock: 2,
@@ -228,7 +237,20 @@ const LoginPage = () => {
             }}
             onClick={onHandleClick}
           >
-            Login
+            {isLoginLoading ? (
+              <ThreeDots
+                height="30"
+                width="30"
+                radius="9"
+                color="#F24E1E"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{}}
+                wrapperClassName=""
+                visible={true}
+              />
+            ) : (
+              "Login"
+            )}
           </Button>
           <Grid
             sx={{

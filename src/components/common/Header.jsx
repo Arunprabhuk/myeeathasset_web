@@ -15,6 +15,7 @@ import { dashboard, logo, menu } from "../../helpers/icon";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { CLEAR_ALL_STATE } from "../../redux/actionType";
+import { toast } from "react-toastify";
 
 const drawerWidth = 240;
 
@@ -117,6 +118,9 @@ export default function PersistentDrawerRight() {
     localStorage.removeItem("token");
     localStorage.removeItem("id");
     navigate("/");
+    toast.error("Logout Successfully", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
   console.log(admin);
   return (

@@ -6,6 +6,8 @@ import {
   GET_ADMIN_USER_DATA,
   GET_ALL_USER_ASSETS_SUCESSFULLY,
   GET_ALL_USER_SUCESSFULLY,
+  LOGIN_ADMIN_USER_DATA_FAILED,
+  LOGIN_ADMIN_USER_DATA_PENDING,
   LOGIN_ADMIN_USER_DATA_SUCCESSFULLY,
   SEND_ADMIN_USER_DATA,
   SEND_ADMIN_USER_DATA_PENDING,
@@ -21,6 +23,7 @@ const intialState = {
   isLoading: false,
   isLoggedin: false,
   admin: [],
+  isLoginLoading: false,
 };
 export const userDetailsReducer = (state = intialState, action) => {
   switch (action.type) {
@@ -62,10 +65,21 @@ export const userDetailsReducer = (state = intialState, action) => {
         ...state,
         isLoading: true,
       };
+    case LOGIN_ADMIN_USER_DATA_FAILED:
+      return {
+        ...state,
+        isLoginLoading: false,
+      };
     case FETCH_ADMIN_USER_DETAILS:
       return {
         ...state,
         admin: action.payload,
+        isLoginLoading: false,
+      };
+    case LOGIN_ADMIN_USER_DATA_PENDING:
+      return {
+        ...state,
+        isLoginLoading: true,
       };
     case CLEAR_ALL_STATE:
       return {

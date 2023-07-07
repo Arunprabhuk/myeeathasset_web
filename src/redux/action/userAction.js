@@ -1,16 +1,19 @@
+import { css } from "@emotion/react";
 import { useService } from "../../helpers/useService";
 import {
   FETCH_ADMIN_USER_DETAILS,
   GET_ADMIN_USER_DATA,
   GET_ALL_USER_ASSETS_SUCESSFULLY,
   GET_ALL_USER_SUCESSFULLY,
+  LOGIN_ADMIN_USER_DATA_FAILED,
   LOGIN_ADMIN_USER_DATA_PENDING,
   LOGIN_ADMIN_USER_DATA_SUCCESSFULLY,
   SEND_ADMIN_USER_DATA,
   SEND_ADMIN_USER_DATA_PENDING,
   SEND_ADMIN_USER_DATA_SUCCESSFULLY,
 } from "../actionType";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 const fetchAllUserDetailsSuccessful = (data) => {
   return {
     type: GET_ALL_USER_SUCESSFULLY,
@@ -32,7 +35,11 @@ const fetchAdminuserSuccessfully = (data) => {
 const fetchAdminuserPending = (data) => {
   return {
     type: LOGIN_ADMIN_USER_DATA_PENDING,
-    payload: data,
+  };
+};
+const fetchAdminuserfailed = () => {
+  return {
+    type: LOGIN_ADMIN_USER_DATA_FAILED,
   };
 };
 const fetchAdminUserDetails = (data) => {
@@ -101,13 +108,20 @@ export const registerAdminUser = (data) => {
       });
       const result = await response.json();
       if (result.statuscode === 200) {
-        console.log(result.user, "hello");
+        toast.success(result.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
         dispatch(sendAdminUser());
-        alert(result.message);
       }
       if (result.statuscode === 400) {
-        console.log(result.user, "hello");
-        alert(result.message);
+        toast.error(result.error, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+      if (result.statuscode === 401) {
+        toast.error(result.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -116,6 +130,7 @@ export const registerAdminUser = (data) => {
 };
 export const loginAdminUser = (data) => {
   return async (dispatch) => {
+    dispatch(fetchAdminuserPending());
     try {
       const response = await fetch(`${useService()}/adminSignIn`, {
         method: "POST",
@@ -131,12 +146,23 @@ export const loginAdminUser = (data) => {
         localStorage.setItem("token", result.user.token);
         localStorage.setItem("id", result.user.userId);
         dispatch(fetchAdminuserSuccessfully(result.user));
-        alert(result.message);
+        toast.success(result.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+
         return result.user;
       }
       if (result.statuscode === 400) {
-        console.log(result.user, "hello");
-        alert(result.message);
+        dispatch(fetchAdminuserfailed());
+        toast.error(result.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
+      if (result.statuscode === 401) {
+        dispatch(fetchAdminuserfailed());
+        toast.error(result.error, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       }
     } catch (error) {
       console.log(error);

@@ -59,7 +59,9 @@ const UserList = ({ item, id, showAssetDetails, isActive }) => {
               src={`${useService()}/${item?.profilePicture.split("/").pop()}`}
             />
             <Grid sx={{ marginLeft: 3 }}>
-              <Typography sx={{ fontSize: 16 }}>{item.fullname}</Typography>
+              <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
+                {item.fullname}
+              </Typography>
             </Grid>
           </Grid>
           <Grid
@@ -70,7 +72,9 @@ const UserList = ({ item, id, showAssetDetails, isActive }) => {
               justifyContent: "center",
             }}
           >
-            <Typography>{item.role}</Typography>
+            <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
+              {item.role}
+            </Typography>
           </Grid>
           <Grid
             sx={{
@@ -80,7 +84,9 @@ const UserList = ({ item, id, showAssetDetails, isActive }) => {
               justifyContent: "center",
             }}
           >
-            <Typography>{item.email}</Typography>
+            <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
+              {item.email}
+            </Typography>
           </Grid>
           {!showAssetDetails && (
             <>
@@ -92,7 +98,7 @@ const UserList = ({ item, id, showAssetDetails, isActive }) => {
                   justifyContent: "center",
                 }}
               >
-                <Typography>
+                <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
                   {moment(item.createdAt).format("MMM Do YY")}
                 </Typography>
               </Grid>
@@ -105,7 +111,9 @@ const UserList = ({ item, id, showAssetDetails, isActive }) => {
                   justifyContent: "center",
                 }}
               >
-                <Typography>{item.contactNumber}</Typography>
+                <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
+                  {item.contactNumber}
+                </Typography>
               </Grid>
               {isActive && (
                 <Grid
@@ -131,7 +139,13 @@ const UserList = ({ item, id, showAssetDetails, isActive }) => {
                 justifyContent: "center",
               }}
             >
-              <Typography sx={{ cursor: "pointer", marginLeft: 5 }}>
+              <Typography
+                sx={{
+                  cursor: "pointer",
+                  marginLeft: 5,
+                  textTransform: "capitalize",
+                }}
+              >
                 {item.noOfAssets}
               </Typography>
               <IconButton onClick={(e) => onHandleOpen(e, item.id)}>

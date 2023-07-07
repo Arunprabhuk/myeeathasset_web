@@ -23,7 +23,9 @@ import {
 import { DISABLE_IMAGE_SLIDER } from "../redux/actionType";
 import ImageViewer from "./ImageViewer";
 import { useNavigate } from "react-router-dom";
-
+import "react-toastify/dist/ReactToastify.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 const MainContainer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,6 +44,7 @@ const MainContainer = () => {
       <>
         {access ? (
           <>
+            <ToastContainer />
             <Header />
             <DrawerHeader />
             <ListComponent />
