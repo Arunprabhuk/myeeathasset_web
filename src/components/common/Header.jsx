@@ -9,9 +9,12 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { Avatar, Grid } from "@mui/material";
+import { Avatar, Button, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { dashboard, logo, menu } from "../../helpers/icon";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { CLEAR_ALL_STATE } from "../../redux/actionType";
 
 const drawerWidth = 240;
 
@@ -97,8 +100,10 @@ export const DrawerHeader = styled("div")(({ theme }) => ({
 export default function PersistentDrawerRight() {
   const theme = useTheme();
   const classes = useStyles();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-
+  const { admin } = useSelector((state) => state.user);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -106,7 +111,14 @@ export default function PersistentDrawerRight() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const logOutHandler = () => {
+    dispatch({ type: CLEAR_ALL_STATE });
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    navigate("/");
+  };
+  console.log(admin);
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -153,20 +165,52 @@ export default function PersistentDrawerRight() {
           sx={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "space-between",
             flexDirection: "column",
             paddingTop: "60px",
+            height: "90vh",
           }}
         >
-          <Avatar />
-          <Typography sx={{ fontSize: 15, fontWeight: "900" }}>
-            FullName
-          </Typography>
-          <Typography
-            sx={{ fontSize: 14, fontWeight: "bold", color: "#00000045" }}
+          <Grid
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
           >
-            Admin
-          </Typography>
+            <Avatar
+              sx={{
+                backgroundColor: "salmon",
+                marginBlock: 1,
+                width: 50,
+                height: 50,
+              }}
+            >
+              {admin !== undefined &&
+                Object.values(admin).length > 0 &&
+                admin.fullname[0]}
+            </Avatar>
+            <Typography
+              sx={{ fontSize: 15, fontWeight: "900", marginBlock: 1 }}
+            >
+              {admin !== undefined &&
+                Object.values(admin).length > 0 &&
+                admin.fullname}
+            </Typography>
+            <Typography
+              sx={{ fontSize: 14, fontWeight: "bold", color: "#00000045" }}
+            >
+              Admin
+            </Typography>
+          </Grid>
+
+          <Button
+            sx={{ color: "#00000070", fontSize: "15px", fontWeight: "600" }}
+            onClick={logOutHandler}
+          >
+            logout
+          </Button>
         </Grid>
       </Drawer>
     </Box>

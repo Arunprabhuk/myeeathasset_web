@@ -40,7 +40,6 @@ export default function ImageViewer() {
   return (
     <div
       style={{
-        height: "100vh",
         backgroundColor: "beige",
         padding: 5,
       }}
