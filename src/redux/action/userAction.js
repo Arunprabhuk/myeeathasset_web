@@ -110,17 +110,23 @@ export const registerAdminUser = (data) => {
       if (result.statuscode === 200) {
         toast.success(result.message, {
           position: toast.POSITION.TOP_RIGHT,
+          pauseOnHover: false,
+          autoClose: 2000,
         });
         dispatch(sendAdminUser());
       }
       if (result.statuscode === 400) {
-        toast.error(result.error, {
+        toast.error(result.message, {
           position: toast.POSITION.TOP_RIGHT,
+          pauseOnHover: false,
+          autoClose: 2000,
         });
       }
       if (result.statuscode === 401) {
-        toast.error(result.message, {
+        toast.error(result.error, {
           position: toast.POSITION.TOP_RIGHT,
+          pauseOnHover: false,
+          autoClose: 2000,
         });
       }
     } catch (error) {
@@ -148,6 +154,8 @@ export const loginAdminUser = (data) => {
         dispatch(fetchAdminuserSuccessfully(result.user));
         toast.success(result.message, {
           position: toast.POSITION.TOP_RIGHT,
+          pauseOnHover: false,
+          autoClose: 2000,
         });
 
         return result.user;
@@ -156,12 +164,16 @@ export const loginAdminUser = (data) => {
         dispatch(fetchAdminuserfailed());
         toast.error(result.message, {
           position: toast.POSITION.TOP_RIGHT,
+          pauseOnHover: false,
+          autoClose: 2000,
         });
       }
       if (result.statuscode === 401) {
         dispatch(fetchAdminuserfailed());
         toast.error(result.error, {
           position: toast.POSITION.TOP_RIGHT,
+          pauseOnHover: false,
+          autoClose: 2000,
         });
       }
     } catch (error) {

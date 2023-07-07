@@ -108,11 +108,9 @@ const LoginPage = () => {
     }
   };
   React.useEffect(() => {
-    setTimeout(() => {
-      if (isLoggedin || localStorage.getItem("isLoggedIn")) {
-        navigate("/dashboard", { replace: true });
-      }
-    }, 3000);
+    if (isLoggedin || localStorage.getItem("isLoggedIn")) {
+      navigate("/dashboard", { replace: true });
+    }
   }, [isLoggedin]);
   return (
     <Grid
