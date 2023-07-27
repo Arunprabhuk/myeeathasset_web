@@ -61,7 +61,6 @@ const sendAdminUserpending = () => {
 
 export const fetchAllUserDetails = (id) => {
   return async (dispatch) => {
-    console.log(useService());
     try {
       const response = await fetch(`${useService()}/user/getAllUser?id=${id}`);
       const result = await response.json();

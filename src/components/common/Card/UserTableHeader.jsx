@@ -1,7 +1,7 @@
 import { Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 
-const UserTableHeader = ({ showAssetDetails }) => {
+const UserTableHeader = ({ showAssetDetails, showuSERAssetDetails }) => {
   const flexWidth = showAssetDetails ? 0.25 : 0.2;
   return (
     <Grid
@@ -23,46 +23,112 @@ const UserTableHeader = ({ showAssetDetails }) => {
           borderRadius: 10,
         }}
       >
-        <Grid
-          sx={{
-            flex: flexWidth,
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <Grid sx={{ marginLeft: 3 }}>
-            <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
-              Name
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid
-          sx={{
-            flex: flexWidth,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
-            Type
-          </Typography>
-        </Grid>
-        <Grid
-          sx={{
-            flex: flexWidth,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
-            Email
-          </Typography>
-        </Grid>
-        {!showAssetDetails && (
+        {showuSERAssetDetails && (
           <>
+            <Grid
+              sx={{
+                flex: flexWidth,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Grid sx={{ marginLeft: 10 }}>
+                <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                  Asset Name
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              sx={{
+                flex: flexWidth,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                Type
+              </Typography>
+            </Grid>
+            <Grid
+              sx={{
+                flex: flexWidth,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                Tags
+              </Typography>
+            </Grid>
+            <Grid
+              sx={{
+                flex: flexWidth,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                Details
+              </Typography>
+            </Grid>
+            <Grid
+              sx={{
+                flex: flexWidth,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                Date Received
+              </Typography>
+            </Grid>
+          </>
+        )}
+        {!showAssetDetails && !showuSERAssetDetails && (
+          <>
+            <Grid
+              sx={{
+                flex: flexWidth,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Grid sx={{ marginLeft: 3 }}>
+                <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                  Name
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              sx={{
+                flex: flexWidth,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                Type
+              </Typography>
+            </Grid>
+            <Grid
+              sx={{
+                flex: flexWidth,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                Email
+              </Typography>
+            </Grid>
             <Grid
               sx={{
                 flex: flexWidth,
@@ -91,25 +157,84 @@ const UserTableHeader = ({ showAssetDetails }) => {
           </>
         )}
         {showAssetDetails && (
-          <Grid
-            sx={{
-              flex: flexWidth,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Typography
+          <>
+            <Grid
               sx={{
-                fontSize: 16,
-                fontWeight: "bold",
-                cursor: "pointer",
-                marginLeft: 5,
+                flex: flexWidth,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
               }}
             >
-              No Of Assets
-            </Typography>
-          </Grid>
+              <Grid sx={{ marginLeft: 3 }}>
+                <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                  Name
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid
+              sx={{
+                flex: flexWidth,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                Type
+              </Typography>
+            </Grid>
+            <Grid
+              sx={{
+                flex: flexWidth,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography sx={{ fontSize: 16, fontWeight: "bold" }}>
+                Email
+              </Typography>
+            </Grid>
+            <Grid
+              sx={{
+                flex: flexWidth,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  marginLeft: 5,
+                }}
+              >
+                No Of Assets
+              </Typography>
+            </Grid>
+            <Grid
+              sx={{
+                flex: flexWidth,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  marginLeft: 5,
+                }}
+              >
+                Asset Details
+              </Typography>
+            </Grid>
+          </>
         )}
       </Paper>
     </Grid>

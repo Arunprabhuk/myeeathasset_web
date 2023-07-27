@@ -38,11 +38,9 @@ const LoginPage = () => {
   const { emailErr, isemailError, ispasswordError, passwordErr } = error;
   const { isLoggedin, isLoginLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log(isLoggedin);
   const navigate = useNavigate();
   const onHandleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
 
     e.preventDefault();
     setState((prev) => ({

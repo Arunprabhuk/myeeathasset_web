@@ -122,7 +122,7 @@ export default function PersistentDrawerRight() {
       position: toast.POSITION.TOP_RIGHT,
     });
   };
-  console.log(admin);
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />

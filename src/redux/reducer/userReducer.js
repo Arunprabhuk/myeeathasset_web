@@ -1,7 +1,9 @@
 import {
   CLEAR_ALL_STATE,
   DISABLE_IMAGE_SLIDER,
+  DISABLE_USER_ASSET_DETAILS_SLIDER,
   ENABLE_IMAGE_SLIDER,
+  ENABLE_USER_ASSET_DETAILS_SLIDER,
   FETCH_ADMIN_USER_DETAILS,
   GET_ADMIN_USER_DATA,
   GET_ALL_USER_ASSETS_SUCESSFULLY,
@@ -18,6 +20,7 @@ const intialState = {
   allUserDetails: [],
   allUserAssetsDetails: [],
   enableSlider: false,
+  enableUserAssetDetails: false,
   id: null,
   adminDetails: [],
   isLoading: false,
@@ -47,6 +50,18 @@ export const userDetailsReducer = (state = intialState, action) => {
       return {
         ...state,
         enableSlider: false,
+        id: null,
+      };
+    case ENABLE_USER_ASSET_DETAILS_SLIDER:
+      return {
+        ...state,
+        enableUserAssetDetails: true,
+        id: action.payload,
+      };
+    case DISABLE_USER_ASSET_DETAILS_SLIDER:
+      return {
+        ...state,
+        enableUserAssetDetails: false,
         id: null,
       };
     case LOGIN_ADMIN_USER_DATA_SUCCESSFULLY:

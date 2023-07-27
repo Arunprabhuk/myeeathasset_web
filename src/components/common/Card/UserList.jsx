@@ -9,20 +9,32 @@ import {
 import moment from "moment";
 import React from "react";
 import { useService } from "../../../helpers/useService";
-import { viewGreen } from "../../../helpers/icon";
+import { details, viewGreen } from "../../../helpers/icon";
 import { useDispatch } from "react-redux";
-import { ENABLE_IMAGE_SLIDER } from "../../../redux/actionType";
+import {
+  ENABLE_IMAGE_SLIDER,
+  ENABLE_USER_ASSET_DETAILS_SLIDER,
+} from "../../../redux/actionType";
 
-const UserList = ({ item, id, showAssetDetails, isActive }) => {
+const UserList = ({
+  item,
+  id,
+  showAssetDetails,
+  isActive,
+  showuSERAssetDetails,
+}) => {
   const dispatch = useDispatch();
-  console.log(`${useService()}/${item?.profilePicture.split("\\").pop()}`);
   const flexWidth = showAssetDetails ? 0.25 : 0.2;
-  // const getImage = (process.env.REACT_APP_MODE = "production" ? "/" : "\\");
-  console.log(item);
+  const URL = useService();
   const onHandleOpen = (e, id) => {
     e.preventDefault();
     dispatch({ type: ENABLE_IMAGE_SLIDER, payload: id });
   };
+  const onHandleOpenAssetDetails = (e, id) => {
+    e.preventDefault();
+    dispatch({ type: ENABLE_USER_ASSET_DETAILS_SLIDER, payload: id });
+  };
+
   return (
     <>
       <Grid
@@ -46,50 +58,52 @@ const UserList = ({ item, id, showAssetDetails, isActive }) => {
             position: "relative",
           }}
         >
-          <Grid
-            sx={{
-              flex: flexWidth,
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Avatar
-              sx={{ width: 50, height: 50 }}
-              src={`${useService()}/${item?.profilePicture.split("/").pop()}`}
-            />
-            <Grid sx={{ marginLeft: 3 }}>
-              <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
-                {item.fullname}
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid
-            sx={{
-              flex: flexWidth,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
-              {item.role}
-            </Typography>
-          </Grid>
-          <Grid
-            sx={{
-              flex: flexWidth,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
-              {item.email}
-            </Typography>
-          </Grid>
-          {!showAssetDetails && (
+          {!showAssetDetails && !showuSERAssetDetails && (
             <>
+              <Grid
+                sx={{
+                  flex: flexWidth,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar
+                  sx={{ width: 50, height: 50 }}
+                  src={`${URL}/${item?.profilePicture.split("/").pop()}`}
+                />
+                <Grid sx={{ marginLeft: 3 }}>
+                  <Typography
+                    sx={{ fontSize: 16, textTransform: "capitalize" }}
+                  >
+                    {item.fullname}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                sx={{
+                  flex: flexWidth,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
+                  {item.role}
+                </Typography>
+              </Grid>
+              <Grid
+                sx={{
+                  flex: flexWidth,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
+                  {item.email}
+                </Typography>
+              </Grid>
               <Grid
                 sx={{
                   flex: flexWidth,
@@ -131,27 +145,157 @@ const UserList = ({ item, id, showAssetDetails, isActive }) => {
             </>
           )}
           {showAssetDetails && (
-            <Grid
-              sx={{
-                flex: flexWidth,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
+            <>
+              <Grid
                 sx={{
-                  cursor: "pointer",
-                  marginLeft: 5,
-                  textTransform: "capitalize",
+                  flex: flexWidth,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
                 }}
               >
-                {item.noOfAssets}
-              </Typography>
-              <IconButton onClick={(e) => onHandleOpen(e, item.id)}>
-                {item.noOfAssets !== 0 && <img src={viewGreen} />}
-              </IconButton>
-            </Grid>
+                <Avatar
+                  sx={{ width: 50, height: 50 }}
+                  src={`${URL}/${item?.profilePicture.split("/").pop()}`}
+                />
+                <Grid sx={{ marginLeft: 3 }}>
+                  <Typography
+                    sx={{ fontSize: 16, textTransform: "capitalize" }}
+                  >
+                    {item.fullname}
+                  </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                sx={{
+                  flex: flexWidth,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
+                  {item.role}
+                </Typography>
+              </Grid>
+              <Grid
+                sx={{
+                  flex: flexWidth,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
+                  {item.email}
+                </Typography>
+              </Grid>
+              <Grid
+                sx={{
+                  flex: flexWidth,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography
+                  sx={{
+                    cursor: "pointer",
+                    marginLeft: 5,
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {item.noOfAssets}
+                </Typography>
+                <IconButton onClick={(e) => onHandleOpen(e, item.id)}>
+                  {item.noOfAssets !== 0 && <img src={viewGreen} />}
+                </IconButton>
+              </Grid>
+              <Grid
+                sx={{
+                  flex: flexWidth,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <IconButton
+                  style={{ marginLeft: 50 }}
+                  onClick={(e) => onHandleOpenAssetDetails(e, item.id)}
+                >
+                  {item.noOfAssets !== 0 && <img src={details} />}
+                </IconButton>
+              </Grid>
+            </>
+          )}
+          {showuSERAssetDetails && (
+            <>
+              <Grid
+                sx={{
+                  flex: flexWidth,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
+                  Image
+                </Typography>
+              </Grid>
+              <Grid
+                sx={{
+                  flex: flexWidth,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
+                  Image
+                </Typography>
+              </Grid>
+              <Grid
+                sx={{
+                  flex: flexWidth,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
+                  {item.tags.length > 0 ? item.tags : "-"}
+                </Typography>
+              </Grid>
+              <Grid
+                sx={{
+                  flex: flexWidth,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: 11,
+                    textTransform: "capitalize",
+                  }}
+                >
+                  {item.description}
+                </Typography>
+              </Grid>
+              <Grid
+                sx={{
+                  flex: flexWidth,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography sx={{ fontSize: 16, textTransform: "capitalize" }}>
+                  {moment(item.createdAt).format("MMM Do YY")}
+                </Typography>
+              </Grid>
+            </>
           )}
         </Paper>
       </Grid>

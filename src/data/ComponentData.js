@@ -17,7 +17,7 @@ export const cardItems = [
   },
   {
     id: 3,
-    title: "Assets",
+    title: "User Assets",
     image: assets,
     color: "#FF388C15",
     shadow: "0px 4px 4px 0px rgba(255, 56, 140, 0.13)",

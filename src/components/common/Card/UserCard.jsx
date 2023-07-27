@@ -3,30 +3,19 @@ import UserList from "./UserList";
 import { Dialog, Grid, IconButton, Paper, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import UserTableHeader from "./UserTableHeader";
-import { DISABLE_IMAGE_SLIDER } from "../../../redux/actionType";
-import Slider from "react-slick";
 import { useService } from "../../../helpers/useService";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { close } from "../../../helpers/icon";
-import { width } from "@mui/system";
 const UserCard = ({
   userDetails,
   showAssetDetails = false,
   isActive = false,
+  showuSERAssetDetails = false,
 }) => {
   const { enableSlider, id, allUserAssetsDetails } = useSelector(
     (state) => state.user
   );
-  console.log(id, "id");
-  const dispatch = useDispatch();
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+
   const filterImageNameById =
     allUserAssetsDetails.length > 0 &&
     allUserAssetsDetails
@@ -34,7 +23,7 @@ const UserCard = ({
         return item.id === id;
       })
       .map((item) => item.imageUrl);
-  console.log(filterImageNameById);
+
   const url = useService();
   return (
     <>
@@ -48,7 +37,10 @@ const UserCard = ({
           overflow: "hidden",
         }}
       >
-        <UserTableHeader showAssetDetails={showAssetDetails} />
+        <UserTableHeader
+          showuSERAssetDetails={showuSERAssetDetails}
+          showAssetDetails={showAssetDetails}
+        />
         <Grid
           sx={{
             margin: 1,
@@ -65,6 +57,7 @@ const UserCard = ({
               return (
                 <UserList
                   showAssetDetails={showAssetDetails}
+                  showuSERAssetDetails={showuSERAssetDetails}
                   item={item}
                   id={index}
                   isActive={isActive}

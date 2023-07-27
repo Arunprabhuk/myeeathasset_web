@@ -10,3 +10,4 @@ export const users = require("../assets/icon/user.png");
 export const viewGreen = require("../assets/icon/greenView.png");
 export const viewPink = require("../assets/icon/pinkView.png");
 export const viewViolet = require("../assets/icon/violetView.png");
+export const details = require("../assets/icon/details.png");

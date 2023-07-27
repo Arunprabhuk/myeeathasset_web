@@ -66,7 +66,7 @@ const ListComponent = () => {
   const filterActiveUser =
     allUserDetails.length > 0 &&
     allUserDetails.filter((item) => item.Active === true);
-  console.log(filterActiveUser);
+
   return (
     <>
       <Box

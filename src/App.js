@@ -14,8 +14,6 @@ import SignUpPage from "./pages/SignUpPage";
 import { Grid, Typography } from "@mui/material";
 
 function App() {
-  const access = localStorage.getItem("isLoggedIn");
-
   return (
     <Provider store={store}>
       <div className="App">

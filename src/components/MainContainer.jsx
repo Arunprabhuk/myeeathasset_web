@@ -20,17 +20,24 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import { DISABLE_IMAGE_SLIDER } from "../redux/actionType";
+import {
+  DISABLE_IMAGE_SLIDER,
+  DISABLE_USER_ASSET_DETAILS_SLIDER,
+} from "../redux/actionType";
 import ImageViewer from "./ImageViewer";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import FullScreenDialog from "./common/Dialoge";
+import UserCard from "./common/Card/UserCard";
+import { assets } from "../helpers/icon";
 const MainContainer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { enableSlider } = useSelector((state) => state.user);
+  const { enableSlider, enableUserAssetDetails, allUserAssetsDetails, id } =
+    useSelector((state) => state.user);
   React.useEffect(() => {
     const id = localStorage.getItem("id");
     dispatch(fetchAllUserDetails(1));
@@ -38,6 +45,10 @@ const MainContainer = () => {
     dispatch(fetchAdminDetails(id));
   }, []);
   const access = localStorage.getItem("isLoggedIn");
+  const filterAssestDetailsById = allUserAssetsDetails.filter((item, index) => {
+    return item.id === id;
+  });
+  console.log(filterAssestDetailsById, id);
 
   return (
     <div>
@@ -86,6 +97,22 @@ const MainContainer = () => {
         >
           <ImageViewer />
         </Dialog>
+      )}
+      {enableUserAssetDetails && (
+        <FullScreenDialog
+          open={enableUserAssetDetails}
+          handleClose={() =>
+            dispatch({ type: DISABLE_USER_ASSET_DETAILS_SLIDER })
+          }
+          title="ASSET DETAILS"
+          children={
+            <UserCard
+              showuSERAssetDetails={true}
+              userDetails={filterAssestDetailsById}
+            />
+          }
+          icon={assets}
+        />
       )}
     </div>
   );

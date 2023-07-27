@@ -17,17 +17,16 @@ export default function ImageViewer() {
         return item.id === id;
       })
       .map((item, index) => {
-        console.log(item.imageUrl, "hello");
         return {
           src: `${url}/${item.imageUrl.split("/").pop()}`,
           original: `${url}/${item.imageUrl.split("/").pop()}`,
           width: 500,
           height: 500,
-          // tags: [
-          //   { value: "Nature", title: "Nature" },
-          //   { value: "Flora", title: "Flora" },
-          // ],
-          // caption: "After Rain (Jeshu John - designerspics.com)",
+          tags: [
+            { value: "Nature", title: "Nature" },
+            { value: "Flora", title: "Flora" },
+          ],
+          caption: "After Rain (Jeshu John - designerspics.com)",
         };
       });
   const slides = filterImageNameById.map(({ original, width, height }) => ({
@@ -36,7 +35,6 @@ export default function ImageViewer() {
     height,
   }));
   const handleClick = (index, item) => setIndex(index);
-  console.log("filterImageNameById", filterImageNameById, slides);
   return (
     <div
       style={{

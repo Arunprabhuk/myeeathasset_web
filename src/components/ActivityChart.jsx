@@ -16,7 +16,6 @@ const ActivityChart = () => {
     allUserDetails.map((item) => {
       return item.noOfAssets;
     });
-  console.log("data", data);
   const options = {
     chart: {
       type: "bar",

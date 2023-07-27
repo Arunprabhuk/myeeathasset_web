@@ -134,12 +134,11 @@ const SignUpPage = () => {
         role,
         password,
       };
-      console.log(data);
+
       dispatch(registerAdminUser(data));
     }
   };
 
-  console.log("isLoading", isLoading);
   return (
     <Grid
       sx={{
